@@ -1,5 +1,5 @@
 ---
-title: SCALA的fold和reduce
+title: scala的fold和reduce
 date: 2017-08-30 20:21:16
 tags: scala
 ---
