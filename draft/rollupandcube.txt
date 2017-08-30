@@ -1,0 +1,82 @@
+为了简单起见，假设如下表：
+
+DI1　　ID2　　MyValue
+
+---------------------------
+
+A 　　   X 　　    2
+A 　　   X 　　　 1
+A 　　　Y 　　　  2
+A 　　　Y 　　　  1
+B 　　　X 　　　  3
+B 　　　Y 　　　  2
+B 　　　Y           2
+
+使用SUM()函数对第三个列值总计：
+
+SELECT ID1,ID2,SUM(MyValue) 
+  FROM #Sample
+  GROUP BY ID1,ID2
+
+  返回结果：
+
+  ID1　　ID2　　(无列名)
+
+  A 　　　X 　　　　3
+  B 　　　X 　　　　3
+  A 　　　Y 　　　　3
+  B 　　　Y 　　　　4
+
+  Cube和Rollup从分组的查询中取得结果，对第一列的值或者每个出现在Group By列列表中的所有列值的组合应用相同的聚合函数。
+
+  Rollup函数
+
+  这是对Group By列列表的第一列进行小计和总计计算的最简单的方法。在假想的例子中，除计算每个唯一的列值的总和以外，还需计算DI1列中A和B行的总和。
+
+  SELECT ID1,ID2,SUM(MyValue)
+  FROM #Sample
+  GROUP BY ID1,ID2
+      WITH ROLLUP
+
+      结果如下：
+
+      ID1　　ID2　　(无列名)
+
+  -------------------------
+
+  A 　　　X 　　　　3
+  A 　　　Y 　　　　3
+  A 　　NULL 　　　6
+  B 　　　X 　　　　3
+  B 　　　Y 　　　　4
+  B 　　NULL 　　　7
+  NULL NULL 　　　13
+
+  空值表示在计算聚合值时忽略相关的列。
+
+  Cube函数
+
+  Cube运算符是对Rollup运算符的扩展。Cube不用于为GROUP BY列表中的第1列积累聚合值，而是对每个分组的列值执行积累。
+
+  SELECT ID1,ID2,SUM(MyValue)
+  FROM #Sample
+  GROUP BY ID1,ID2
+      WITH CUBE
+
+      结果：
+
+      ID1　　ID2　　(无列名)
+
+  -------------------------
+
+  A 　　　X 　　　　3
+  B 　　　X 　　　　3
+  NULL 　X 　　　　6
+  A 　　　Y 　　　　3
+  B 　　　Y 　　　　4
+  NULL 　Y 　　　　7
+  NULL NULL 　　　13
+  A 　　NULL 　　　6
+  B 　　NULL 　　　7
+
+  第1列中的空值表示该列值是第2列的值的积累。这些行包含ID2等于X或者Y的行的小计。其中两个分组列的值都为空，表明这两个列是一个总计，即所有行的和。
