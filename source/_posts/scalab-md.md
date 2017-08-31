@@ -4,10 +4,8 @@ date: 2017-08-31 07:27:05
 tags: scala
 ---
 
-如果不了解map，flatMap，zip和reduce函数，你就不能真正地谈论scala。通过这些函数，我们可以非常容易地处理列表的内容并结合Option对象工作。你可以在这个站点找到更多的片段：
-Scala片段 1:Folding
-Scala 片段2:List的操作符魔法
-
+如果不了解map，flatMap，zip和reduce函数，你就不能真正地谈论scala。通过这些函数，我们可以非常容易地处理列表的内容并结合Option对象工作。
+<!--more -->
 让我们从map开始，通过map我们可以将一个函数应用于列表的每一个元素并且将其作为一个新的列表返回。
 我们可以这样对列表的元素进行平方：
 ```scala
