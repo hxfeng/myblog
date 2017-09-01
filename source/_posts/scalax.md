@@ -10,6 +10,7 @@ Scala 语言中提供的数组是用来存储固定大小的同类型元素，�
 声明数组变量并不是声明 number0、number1、...、number99 一个个单独的变量，而是声明一个就像 numbers 这样的变量，然后使用 numbers[0]、numbers[1]、...、numbers[99] 来表示一个个单独的变量。数组中某个指定的元素是通过索引来访问的。
 数组的第一个元素索引为0，最后一个元素的索引为元素总数减1。
 scala数组的使用，scala可以推导数组的类型，也可以显示的指定数组的类型
+<!-- more -->
 ```scala 
 val tmpArray:Array[Int]=Array(1,2,3,4)
 val tmpArray=Array(1,2,3,4)
@@ -69,7 +70,7 @@ def make[T: ClassTag](): ArrayBuilder[T] = {
     }
   }
 ```
-#List
+# List
 Scala 列表类似于数组，它们所有元素的类型都相同，但是它们也有所不同：列表是不可变的，值一旦被定义了就不能改变，其次列表 具有递归的结构（也就是链接表结构）而数组不是,列表的元素类型 T 可以写成 List[T]。例如，以下列出了多种类型的列表
 ```scala
 // 字符串列表
