@@ -93,16 +93,34 @@ scala> printContentLength(value2)
 ```
 map操作
 
-在函数式编程中有一个核心的概念之一是转换，所以大部份支持函数式编程语言，都支持一种叫map()的动作，这个动作是可以帮你把某个容器的内容，套上一些动作之后，变成另一个新的容器。
-现在我们考虑如何用Option的map方法实现length: xxx的输出形式：
-
-先算出 Option 容器内字符串的长度
-然后在长度前面加上 "length: " 字样
-最后把容器走访一次，印出容器内的东西
+在函数式编程中有一个核心的概念之一是转换，所以大部份支持函数式编程语言，都支持一种叫map()的动作，这个动作是可以帮你把某个容器的内容，套上一些动作之后，变成另一个新的容器。 现在我们考虑如何用Option的map方法实现length: xxx的输出形式：
+先算出 Option 容器内字符串的长度 然后在长度前面加上 "length: " 字样 最后把容器走访一次，印出容器内的东西
 ```scala
 scala> value1.map(_.length).map("length: " + _).foreach(println)
 length: 6
 
 scala> value1.map("length: " + _.length).foreach(println)
 length: 6
+```
+如果某一个函数返回一个整数，则对于函数返回值的判断可以做类似如下的处理
+当结果为空的时候我们可以很优雅的知道结果是空
+```scala
+
+scala> val k :Option[Int]= Some(4)
+k: Option[Int] = Some(4)
+
+scala> k match{
+     | case Some(x) =>print(x)
+     | case None => print("none")
+     | }
+4
+
+scala> val k :Option[Int]=None
+k: Option[Int] = None
+
+scala> k match{
+     | case Some(x) =>print(x)
+     | case None => print("none")
+     | }
+none
 ```
