@@ -1,7 +1,7 @@
 ---
 title: scala 集合使用
 date: 2017-09-01 22:14:57
-catagery: 技术
+category: 技术
 tags: scala
 ---
 # Array
