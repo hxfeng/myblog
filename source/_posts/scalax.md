@@ -32,7 +32,7 @@ val tmpArrayString=Array("hello","tom")
 不使用new时默认调用的时Array的伴随对象的apply函数来初始化数组的
 默认使用的数组时不可变的，一旦确定数组的大小就不能修改，但数组元素的值可以修改
 ## 可变与不可变
-不可变数组只支持一下几种操作
+不可变集仅支持部分不修改的操作，可变集都继承有Buffer 接口，可以使用Buffer中的所有操作。
 ```scala
 apply   asInstanceOf   clone   isInstanceOf   length   toString   update
 ```
@@ -168,6 +168,28 @@ companion      flatten         isDefinedAt       mkString             reduceRigh
  applyOrElse   endsWith        indices           max                  reduceOption       sortBy              toSeq       
 
  ```
+ list和ListBuffer可以相互转换to函数是范型函数指定转换类型
+ ```scala
+ l
+ res96: List[Int] = List(1, 2, 3, 4, 5)
+
+ scala> l.t
+ tail    take        takeWhile   toArray    toIndexedSeq   toIterator   toMap   toSet      toString        toVector    
+ tails   takeRight   to          toBuffer   toIterable     toList       toSeq   toStream   toTraversable   transpose   
+
+ scala> l.to
+ to   toArray   toBuffer   toIndexedSeq   toIterable   toIterator   toList   toMap   toSeq   toSet   toStream   toString   toTraversable   toVector
+
+ scala> l.to[ListBuffer]
+ res97: scala.collection.mutable.ListBuffer[Int] = ListBuffer(1, 2, 3, 4, 5)
+
+ scala> l.to[Array]
+ res98: Array[Int] = Array(1, 2, 3, 4, 5)
+
+ scala> l.to[ArrayBuffer]
+ res99: scala.collection.mutable.ArrayBuffer[Int] = ArrayBuffer(1, 2, 3, 4, 5)
+
+ ```
 # map
 
  ```scala
@@ -271,3 +293,5 @@ andThen     drop           forall      isTraversableAgain   product      size   
 apply       dropRight      foreach     iterator             reduce       slice               to             toVector
 ```
 
+# 总结
+scala的集合在编程中使用和频繁，正确熟练的运用scala的集合对与scala编程有非常大的帮助。
