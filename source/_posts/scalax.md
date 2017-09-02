@@ -4,13 +4,24 @@ date: 2017-09-01 22:14:57
 category: 技术
 tags: scala
 ---
+Scala拥有丰富的集合库。集合是一种用来存储各种对象和数据的容器。 这些容器可以被排序，诸如列表，元组，选项，映射等的线性集合。集合可以具有任意数量的元素或被限制为零或一个元素(例如，Option)。 集合可以是严格的(strict)或懒惰的(Lazy)。 懒惰集合的元素在访问之前可能不会使用内存，例如Ranges。 此外，集合可能是可变的(引用的内容可以改变)或不可变的(引用引用的东西从不改变)。 请注意，不可变集合可能包含可变项目。 对于一些问题，可变集合的工作更好，而对于其他集合，不可变集合的工作更好。 如果有疑问，最好从不可变集合开始，如果需要可变集合，可以更改为可变集合。
+
+<!-- more -->
+```scala
+* scala.collection and its sub-packages contain Scala's collections framework
+    * scala.collection.immutable - Immutable, sequential data-structures such as Vector, List, Range, HashMap or HashSet
+    * scala.collection.mutable - Mutable, sequential data-structures such as ArrayBuffer, StringBuilder, HashMap or HashSet
+    * scala.collection.concurrent - Mutable, concurrent data-structures such as TrieMap
+    * scala.collection.parallel.immutable - Immutable, parallel data-structures such as ParVector, ParRange, ParHashMap or ParHashSet
+    * scala.collection.parallel.mutable - Mutable, parallel data-structures such as ParArray, ParHashMap, ParTrieMap or ParHashSet
+    * scala.concurrent - Primitives for concurrent programming such as Futures and Promises 
+```
 # Array
 
 Scala 语言中提供的数组是用来存储固定大小的同类型元素，数组对于每一门编辑应语言来说都是重要的数据结构之一。
 声明数组变量并不是声明 number0、number1、...、number99 一个个单独的变量，而是声明一个就像 numbers 这样的变量，然后使用 numbers[0]、numbers[1]、...、numbers[99] 来表示一个个单独的变量。数组中某个指定的元素是通过索引来访问的。
 数组的第一个元素索引为0，最后一个元素的索引为元素总数减1。
 scala数组的使用，scala可以推导数组的类型，也可以显示的指定数组的类型
-<!-- more -->
 ```scala 
 val tmpArray:Array[Int]=Array(1,2,3,4)
 val tmpArray=Array(1,2,3,4)
@@ -131,4 +142,132 @@ combinations   flatMap         intersect         minBy                reduceRigh
 companion      flatten         isDefinedAt       mkString             reduceRightOption   span              toSet  
 ```
 与数组类似list也有可变的版本ListBuffer
+
+```scala
+ listBuffer.
+ ++            asInstanceOf    exists            init                 maxBy              reduceRight         sortWith       toSet           
+ ++:           canEqual        filter            inits                min                reduceRightOption   sorted         toStream        
+ ++=           clear           filterNot         insert               minBy              remove              span           toString        
+ ++=:          clone           find              insertAll            mkString           repr                splitAt        toTraversable   
+ +:            collect         flatMap           intersect            nonEmpty           result              startsWith     toVector        
+ +=            collectFirst    flatten           isDefinedAt          orElse             reverse             stringPrefix   transform       
+ +=:           combinations    fold              isEmpty              padTo              reverseIterator     sum            transpose       
+ -             companion       foldLeft          isInstanceOf         par                reverseMap          tail           trimEnd         
+ --            compose         foldRight         isTraversableAgain   partition          runWith             tails          trimStart       
+ --=           contains        forall            iterator             patch              sameElements        take           union           
+ -=            containsSlice   foreach           last                 permutations       scan                takeRight      unzip           
+ /:            copyToArray     genericBuilder    lastIndexOf          prefixLength       scanLeft            takeWhile      unzip3          
+ :+            copyToBuffer    groupBy           lastIndexOfSlice     prepend            scanRight           to             update          
+ :\            corresponds     grouped           lastIndexWhere       prependAll         segmentLength       toArray        updated         
+ addString     count           hasDefiniteSize   lastOption           prependToList      seq                 toBuffer       view            
+ aggregate     diff            head              length               product            size                toIndexedSeq   withFilter      
+ andThen       distinct        headOption        lengthCompare        readOnly           sizeHint            toIterable     zip             
+ append        drop            indexOf           lift                 reduce             sizeHintBounded     toIterator     zipAll          
+ appendAll     dropRight       indexOfSlice      map                  reduceLeft         slice               toList         zipWithIndex    
+ apply         dropWhile       indexWhere        mapResult            reduceLeftOption   sliding             toMap                          
+ applyOrElse   endsWith        indices           max                  reduceOption       sortBy              toSeq       
+
+ ```
+# map
+
+ ```scala
+
+
+cala> Map("a"->3)
+res39: scala.collection.immutable.Map[String,Int] = Map(a -> 3)
+
+scala> val m1=Map("a"->3)
+m1: scala.collection.immutable.Map[String,Int] = Map(a -> 3)
+
+scala> m1.
++              companion      flatMap           inits                min                 sameElements   takeWhile       transpose
+++             compose        flatten           isDefinedAt          minBy               scan           to              unzip
+++:            contains       fold              isEmpty              mkString            scanLeft       toArray         unzip3
+-              copyToArray    foldLeft          isInstanceOf         nonEmpty            scanRight      toBuffer        updated
+--             copyToBuffer   foldRight         isTraversableAgain   orElse              seq            toIndexedSeq    values
+/:             count          forall            iterator             par                 size           toIterable      valuesIterator
+:\             default        foreach           keySet               partition           slice          toIterator      view
+addString      drop           genericBuilder    keys                 product             sliding        toList          withDefault
+aggregate      dropRight      get               keysIterator         reduce              span           toMap           withDefaultValue
+andThen        dropWhile      getOrElse         last                 reduceLeft          splitAt        toSeq           withFilter
+apply          empty          groupBy           lastOption           reduceLeftOption    stringPrefix   toSet           zip
+applyOrElse    exists         grouped           lift                 reduceOption        sum            toStream        zipAll
+asInstanceOf   filter         hasDefiniteSize   map                  reduceRight         tail           toString        zipWithIndex
+canEqual       filterKeys     head              mapValues            reduceRightOption   tails          toTraversable
+collect        filterNot      headOption        max                  repr                take           toVector
+collectFirst   find           init              maxBy                runWith             takeRight      transform
+
+
+scala> val m2=Map("b"->4)
+m2: scala.collection.immutable.Map[String,Int] = Map(b -> 4)
+
+scala> m1++m2
+res50: scala.collection.immutable.Map[String,Int] = Map(a -> 3, b -> 4)
+
+
+scala> val m3=m1++m2
+m3: scala.collection.immutable.Map[String,Int] = Map(a -> 3, b -> 4)
+
+scala> m3.toS
+toSeq   toSet   toStream   toString
+
+scala> m3.toSe
+toSeq   toSet
+
+scala> m3.toSet
+res52: scala.collection.immutable.Set[(String, Int)] = Set((a,3), (b,4))
+
+scala> m3.toSeq
+res53: Seq[(String, Int)] = ArrayBuffer((a,3), (b,4))
+
+scala> m3.to
+to   toArray   toBuffer   toIndexedSeq   toIterable   toIterator   toList   toMap   toSeq   toSet   toStream   toString   toTraversable   toVector
+
+scala> m3.toList
+res54: List[(String, Int)] = List((a,3), (b,4))
+
+scala> m3.toS
+toSeq   toSet   toStream   toString
+
+scala> m3.toStr
+toStream   toString
+
+scala> m3.toString
+res55: String = Map(a -> 3, b -> 4)
+
+
+scala> m3.toVector
+res58: Vector[(String, Int)] = Vector((a,3), (b,4))
+
+scala> m3.toBuffer
+res59: scala.collection.mutable.Buffer[(String, Int)] = ArrayBuffer((a,3), (b,4))
+
+scala> m3.toArray
+res60: Array[(String, Int)] = Array((a,3), (b,4))
+
+
+ ```
+# Set
+
+
+
+```scala
+scala> val s1=Set(2,3,4)
+s1: scala.collection.immutable.Set[Int] = Set(2, 3, 4)
+
+scala> s1.
+&           asInstanceOf   dropWhile   genericBuilder       last         reduceLeft          sliding        toArray         transpose
+&~          canEqual       empty       groupBy              lastOption   reduceLeftOption    span           toBuffer        union
++           collect        exists      grouped              map          reduceOption        splitAt        toIndexedSeq    unzip
+++          collectFirst   filter      hasDefiniteSize      max          reduceRight         stringPrefix   toIterable      unzip3
+++:         companion      filterNot   head                 maxBy        reduceRightOption   subsetOf       toIterator      view
+-           compose        find        headOption           min          repr                subsets        toList          withFilter
+--          contains       flatMap     init                 minBy        sameElements        sum            toMap           zip
+/:          copyToArray    flatten     inits                mkString     scan                tail           toSeq           zipAll
+:\          copyToBuffer   fold        intersect            nonEmpty     scanLeft            tails          toSet           zipWithIndex
+addString   count          foldLeft    isEmpty              par          scanRight           take           toStream        |
+aggregate   diff           foldRight   isInstanceOf         partition    seq                 takeRight      toString
+andThen     drop           forall      isTraversableAgain   product      size                takeWhile      toTraversable
+apply       dropRight      foreach     iterator             reduce       slice               to             toVector
+```
 
