@@ -11,11 +11,11 @@ tags:
 ### 推荐适用国外主机
 https://www.vultr.com/
 #安装影梭
-
+```bash
 wget --no-check-certificate https://down.upx8.com/shell/shadowsocks-go.sh
 chmod +x shadowsocks-go.sh
 ./shadowsocks-go.sh 2>&1 | tee shadowsocks-go.log
-
+```
 
 ### 卸载方法：
 
