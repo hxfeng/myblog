@@ -4,9 +4,8 @@ date: 2018-05-29 05:07:28
 category:
 tags:
 ---
-
-
-
+VPN 全名：虚拟专用网络。其功能是：在公用网络上建立专用网络，进行加密通讯。
+<!-- more -->
 
 ### 推荐适用国外主机
 https://www.vultr.com/
@@ -72,7 +71,7 @@ https://github.com/shadowsocks/shadowsocks-windows/releases
 
 安装后打开，然后设置，服务器地址和端口号记得对应
 
-然后代理模式选择PAC，这样省流量，你也可以全局，反正500G一个月足够用了： 
+然后代理模式选择PAC，这样省流量
 
 
 
