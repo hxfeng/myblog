@@ -5,7 +5,7 @@ category:
 tags:
 ---
 
-##前言
+## 前言
 Linux系统的启动方式有点复杂，而且总是有需要优化的地方。传统的Linux系统启动过程主要由著名的init进程（也被称为SysV init启动系统）处理，而基于init的启动系统被认为有效率不足的问题，systemd是Linux系统机器的另一种启动方式，宣称弥补了以传统Linux SysV init为基础的系统的缺点
 systemd 的特性有：支持并行化任务；同时采用 socket 式与 D-Bus 总线式激活服务；按需启动守护进程（daemon）。利用 Linux 的 cgroups 监视进程；支持快照和系统恢复。维护挂载点和自己主动挂载点。各服务间基于依赖关系进行精密控制。
 监视和控制systemd的主要命令是systemctl。
